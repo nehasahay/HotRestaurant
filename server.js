@@ -1,6 +1,11 @@
-const express = require("express"),
-    app = express(),
-    PORT = process.env.PORT || 3000;
+const express = require('express');
+const path = require('path');
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const app = express();
+const port = process.env.PORT || 7500;
+
+require('./routes/html-routes')(app);
+
+app.listen(PORT, () => {
+    console.log("Server listening on PORT: " + PORT);
+});
