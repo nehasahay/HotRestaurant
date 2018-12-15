@@ -20,6 +20,8 @@
   "homepage": "https://github.com/nehasahay/HotRestaurant#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "twilio": "^3.25.0"
   }
 }
