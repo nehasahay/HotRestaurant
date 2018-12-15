@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>La Fuego Restaurant</title>
@@ -10,7 +11,49 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
+
+  <div id="reservation-confirmed" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">La Fuego Restaurant</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <p>Congratulations you have been booked in the hottest restaurant in town</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="waitlist-confirmed" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">La Fuego Restaurant</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <p>We are very sorry, we are at max reservation. You have been added to the waitlist.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 
   <div class="container">
 
@@ -21,7 +64,8 @@
       <br>
 
       <div class="text-center">
-        <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+        <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span>
+            View Tables</button></a>
         <a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
       </div>
     </div>
@@ -70,36 +114,48 @@
 
     <footer class="footer">
       <div class="container">
-        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> | <a href="">GitHub Repo</a></p>
+        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> | <a href="">GitHub
+            Repo</a></p>
       </div>
     </footer>
 
   </div>
 
 </body>
+
 </html>
 <script type="text/javascript">
-    $(".submit").on("click", function(event) {
-      event.preventDefault();
-      var newReservation = {
-        customerName: $("#reserve-name").val().trim(),
-        phoneNumber: $("#reserve-phone").val().trim(),
-        customerEmail: $("#reserve-email").val().trim(),
-        customerID: $("#reserve-unique-id").val().trim()
-      };
-      console.log(newReservation);
-      $.post("/api/tables", newReservation,
-        function(data) {
-          if (data) {
-            alert("Yay! You are officially booked!");
-          }
-          else {
-            alert("Sorry you are on the wait list");
-          }
-          $("#reserve-name").val("");
-          $("#reserve-phone").val("");
-          $("#reserve-email").val("");
-          $("#reserve-unique-id").val("");
-        });
-    });
+  $(".submit").on("click", function (event) {
+    event.preventDefault();
+    var newReservation = {
+      customerName: $("#reserve-name").val().trim(),
+      phoneNumber: $("#reserve-phone").val().trim(),
+      customerEmail: $("#reserve-email").val().trim(),
+      customerID: $("#reserve-unique-id").val().trim()
+    };
+    console.log(newReservation);
+    $.post("/api/tables", newReservation,
+      function (data) {
+        if (data) {
+          // alert("Yay! You are officially booked!");
+
+          
+            $('#reservation-confirmed').modal('show');
+          
+
+
+        } else {
+          // alert("Sorry you are on the wait list");
+
+          
+            $('#waitlist-confirmed').modal('show');
+          
+
+        }
+        $("#reserve-name").val("");
+        $("#reserve-phone").val("");
+        $("#reserve-email").val("");
+        $("#reserve-unique-id").val("");
+      });
+  });
 </script>

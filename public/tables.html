@@ -59,11 +59,11 @@
       var currentURL = window.location.origin;
       $.ajax({ url: currentURL + "/api/tables", method: "GET" })
       .done(function(tableData) {
-        console.log("------------------------------------");
-        console.log("URL: " + currentURL + "/api/tables");
-        console.log("------------------------------------");
-        console.log(tableData);
-        console.log("------------------------------------");
+        // console.log("------------------------------------");
+        // console.log("URL: " + currentURL + "/api/tables");
+        // console.log("------------------------------------");
+        // console.log(tableData);
+        // console.log("------------------------------------");
 
         for (var i = 0; i < tableData.length; i++) {
           var tableSection = $("<div>");
@@ -79,11 +79,11 @@
       var currentURL = window.location.origin;
       $.ajax({ url: currentURL + "/api/waitlist", method: "GET" })
       .done(function(waitlistData) {
-        console.log("------------------------------------");
-        console.log("URL: " + currentURL + "/api/waitlist");
-        console.log("------------------------------------");
-        console.log(waitlistData);
-        console.log("------------------------------------");
+        // console.log("------------------------------------");
+        // console.log("URL: " + currentURL + "/api/waitlist");
+        // console.log("------------------------------------");
+        // console.log(waitlistData);
+        // console.log("------------------------------------");
         for (var i = 0; i < waitlistData.length; i++) {
           var waitlistSection = $("<div>");
           waitlistSection.addClass("well");
