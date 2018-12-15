@@ -24,6 +24,14 @@ module.exports = function(app) {
     }
   });
 
+  app.delete("/api/tables/:customer", function(req, res) {
+    var customer = req.params.customer;
+    tableData.splice(customer, 1);
+    var newCustomer = waitListData.pop();
+    tableData.push(newCustomer);
+    res.json(true);
+  });
+
   app.post("/api/clear", function() {
     tableData = [];
     waitListData = [];
