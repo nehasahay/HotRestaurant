@@ -1,5 +1,5 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+var express = require("express"); // cooler
+var bodyParser = require("body-parser"); //old
 
 var app = express();
 
