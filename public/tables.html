@@ -94,7 +94,8 @@
           var tableNumber = i + 1;
           $("#tableWell-" + i + 1).append("<h2><span class='label label-primary'>" + tableNumber + "</span> | " +
             tableData[i].customerName + "</h2>" + "\n<h3>Email: " + tableData[i].customerEmail + "</h3>" +
-            "\n<h3>Phone: " + tableData[i].phoneNumber + "</h3>\n" + "<button type='button' class='tableready btn btn-primary' id='tableisready'>SMS Ready Table</button>");
+            "\n<h3>Phone: " + tableData[i].phoneNumber + "</h3>\n" + "<button class='btn btn-primary delete' data-id='" + tableNumber +
+            "'>Delete</button><button type='button' class='tableready btn btn-primary' id='tableisready'>SMS Ready Table</button>");
         }
       });
   }
@@ -131,6 +132,23 @@
     clearTable();
     location.reload();
   });
+
+
+  $(document).on("click", ".delete", function () {
+    var currentURL = window.location.origin;
+    var CUSTOMER = $(this).attr("data-id") - 1;
+    $.ajax({
+        url: currentURL + "/api/tables/" + CUSTOMER,
+        method: "DELETE"
+      })
+      .then(function (response) {
+        $("#tableSection").empty();
+        $("#waitlistSection").empty();
+        runTableQuery();
+        runWaitListQuery();
+      })
+  });
+
   runTableQuery();
   runWaitListQuery();
 
